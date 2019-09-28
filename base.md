@@ -44,21 +44,23 @@ print("Hello 小巴拉")
 
 ### import
 
-import用于导入需要的文件，譬如需要`numpy`，这个第三方库，
+- 可以通过输入import关键字来导入模块
 
-在创建的.py文件首行直接导入即可，同时有时有些库的命名很长，可是使用`import  as `来简化
-
-有时只需要某个库里面的一个方法，可以这样导入`from   import `
-
-导入之后，这些库的功能就全部都能当前的.py文件中使用了
-
-```python
+```
 import numpy
-import matplotlib as mlt
-from math import log
 ```
 
+- 或者使用简称，即将模块通过as关键字来命名一个简称
 
+```
+import numpy as np
+```
+
+- 有时不必导入整个模块，就像
+
+```
+from scipy.stats import norm
+```
 
 可以使用`imort this`导入Tim Peters撰写的`Python之禅`
 
