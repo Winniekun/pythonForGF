@@ -143,9 +143,9 @@ print("a type is {}, b type is{}, c type is {}, d type is {}".format(type(a), ty
 3
 ```
 
-##### float的运算
+##### float的一些知识
 
-其和上诉的整数运算一致，但是与一个地方需要注意
+float的运算其和上述的整数运算一致，但是与一个地方需要注意
 
 ```python
 >>> 3*0.1  
@@ -155,6 +155,18 @@ print("a type is {}, b type is{}, c type is {}, d type is {}".format(type(a), ty
 ```
 
 所有语言都存在这种问题。 Python 会尽力找到一种方式,以尽可能精确地表示结果,但鉴于计算机内部表示数字的方式,这在有些情况下很难
+
+**float精度控制**
+
+有时候，需要保留小数点的后几位进行精度的空值
+
+```python
+>>> a = 1.9935
+>>> # round(arg1, arg2) 
+>>> # arg1: 传入的float值 # arg2: 保留位数
+>>> round(a, 2)
+1.99
+```
 
 
 
@@ -180,8 +192,6 @@ print("a type is {}, b type is{}, c type is {}, d type is {}".format(type(a), ty
 #### String(字符串)
 
 字符串就是一系列字符，Python中凡是用引号括起来的都是字符串，其中引号可以是`单引号` `双引号` `三引号`都可以
-
-##### 字符串的常用操作：
 
 **字符串全部改为大写，或者全部为小写**
 
@@ -237,7 +247,101 @@ Weikunkun
 
 同理`lstrip`用于删除左边过多的空格，当然也可用`strip`去除所有的空格
 
+##### 使用str()避免类型错误
+
+有时候，会在输出中使用多中类型的变量，譬如，祝福某人生日快乐
+
+```python
+age = 23
+blessing = 'Happy' + age + 'rd Birthday'
+print(blessing)
+```
+
+这个输出之后，会发现是错误的，并且提示`TypeError`，这说明了Python无法识别你使用的信息，因为这是字符串和整数两个类型的变量，Python可能会将`age`变量理解为数值`23`或者是字符`2`和 `3` ，所以为了能够让Python能够正常理解，需要将整数类型的age，转化为字符串类型，
+
+```python
+age = 23
+blessing = 'Happy' + str(age) + 'rd Birthday'
+print(blessing)
+```
+
+这时候，还可以使用`type(str(age))`，观察其是否真的是字符串类型。
+
+##### 字符串的一些常用的方法
+
+* capitalize()
+
+  将字符串的第一个字母变成大写，其他的字母变小写
+
+  ```python
+  >>> name = 'my name IS Xiao Bala'
+  >>> name.capitalize()
+  My name is xiao bala
+  ```
+
+* center()
+
+  用于居中
+
+  ```python
+  >>> ## center(width, fillchar)
+  >>> ## width: 字符串的总长度 fillchar: 填充的字符
+  >>> ## 例如 将name字符变为长度为50的字符串，然后居中，其余的位置*填充
+  >>> name = 'Xiao Bala'
+  >>> name.center(50, '*')
+  '***************my name IS Xiao Bala***************'
+  >>> len(name.center(50, '*'))## len方法用于查看变量的长度
+  50
+  ```
+
+* count()
+
+  用于统计字符串中某个字符出现的次数，或者某个子字符串出现的个数
+
+  ```python
+  >>> name = 'my name IS Xiao Bala'
+  >>> name.count("a")
+  4
+  >>> name = 'hello  hello , my my name' 
+  >>> name.count('hello')
+  2
+  >>> #其也可以指定字符串的索引位置，进行统计，关于索引后面会讲到
+  >>> name.count('hello', 0, 14) 
+  2
+  >>> name.count('hello', 0, 10)
+  1
+  ## hello  hello , my my name
+  ## 0123456789....
+  ## 以此类推，计算机中，都是从0开始进行计数
+  ```
+
+  
+
+* find()
+
+  寻找字符串中是否含有某个字符或者字符串，并返回第一次出现的位置
+
+  ```python
+  >>> # HelloXiaobala
+  >>> # 0123456789....
+  >>> name = 'HelloXiaobala'
+  >>> name.find('H')
+  0
+  >>> name.find('a')
+  7
+  >>> name.find('o')
+  4
+  ```
+
+
+
+
+
+####  
+
 ### Reference
 
 * Python学习笔记(上卷)
 * 菜鸟教程
+* Python编程从入门到实践
+
