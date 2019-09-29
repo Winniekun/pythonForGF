@@ -335,13 +335,216 @@ print(blessing)
 
 
 
+#### 列表
+
+列表 由一系列按特定顺序排列的元素组成。你可以创建包含字母表中所有字母、数字 0~9 或所有家庭成员姓名的列表;也可以将任何东西加入列表中,其中的元素之间可以没有任何关系。在Python中，用`[]`来表示列表，并用`,`来分割每个元素
+
+```python
+>>> name=['XiaoBala', 'Weikunkun', 'Erzhu']
+>>> print(name)
+['XiaoBala', 'Weikunkun', 'Erzhu']
+```
+
+##### 列表的操作
+
+* 访问列表中的元素：
+
+  要访问列表元素,可指出列表的名称,再指出元素的索引,并将其放在方括号内。
+
+  例如从`name`中选出第三位同志，Python只返回该元素，`[]`和`’‘`都不返回
+
+  ```python
+  # 索引是从0开始
+  >>> name[2]
+  Erzhu
+  ```
+
+  当然，注意到列表中的元素全是字符串，所以说对字符串适用的方法对刚取出来的元素是完全可以的适用的。
+
+  ```python
+  >>> name[2].center(50, '+')
+  '++++++++++++++++++++++Erzhu+++++++++++++++++++++++'
+  ```
+
+* 修改元素
+
+  ```python
+  >>> name=['XiaoBala', 'Weikunkun', 'Erzhu']
+  >>> print(name)
+  ['XiaoBala', 'Weikunkun', 'Erzhu']
+  >>> name[2] = 'Dabala'
+  >>> print(name)
+  ['XiaoBala', 'Weikunkun', 'Dabala']
+  ```
+
+  
+
+* 添加元素
+
+  列表中添加新元素时,最简单的方式是将元素附加到列表末尾。给列表附加元素时,它将添加到列表末尾
+
+  ```python
+  >>> name.append('Laipi')
+  >>> name
+  ['XiaoBala', 'Weikunkun', 'Dabala', 'Laipi'] # 注意到这里的name和最开始输入的name已经不一样了
+  ## 修改元素是直接在原来的列表中进行修改
+  ```
+
+  可以在已经有元素的列表上添加，也就意味这完全可以在空的列表中添加元素
+
+  ```python
+  >>> snack = []
+  >>> snack.append('ice cream')
+  >>> snack,append('milk')
+  >>> snack.append('biscuits')
+  >>> print(snack)
+  ['ice cream', 'milk', 'biscuits']
+  ```
+
+  在列表中的任意位置插入元素
+
+  ```python
+  >>> # insert(arg1, arg2)
+  >>> # arg1: 插入位置 arg2: 插入元素
+  >>> snack.inser(0, 'noodles')
+  >>> print(snack)
+  ['noodles' ,'ice cream', 'milk', 'biscuits']
+  
+  ```
+
+  **思考**: 如何获取一个列表的长度？如果一个列表的长度为8，那么在位置20的地方插入一个元素能成功吗，若是成功，结果是什么？
+
+  
+
+* 删除元素
+
+  使用`del`删除元素
+
+  ```python
+  >>> del snack[0]
+  ['ice cream', 'milk', 'biscuits']
+  ```
+
+  使用`del`之后，删除的元素就无法再使用了
+
+  使用`pop`弹出元素
+
+  有很多的情形，删除一个元素之后，我们还是需要这个元素的，譬如在Web程序中，将一个用户从活跃用户组删除，并加入到非活跃的用户组，`pop`默认弹出列表中最后一个元素，但是也可以指定具体的位置
+
+  ```python
+  >>> pop_ele = snack.pop()
+  >>> print(pop_ele)
+  'biscuits'
+  >>> pop_ele2 = snack.pop(0)
+  >>> print(pop_ele2)
+  'ice cream'
+  ```
+
+  使用remove删除元素
+
+  在一些情景中，我们直到需要删除的元素是什么，但是由于列表过长，无法确定其索引，所以可以使用remove直接删除该元素，同样，remove也是删除第一次出现的元素，剩下的相同的元素未删除。若要全部删除就需要使用循环了。
+
+  ```python
+  > snack.remove('milk')
+  
+  ```
+
+  此时再`print(snack)`发现所有的元素都已经被我们删除完了
+
+##### 对列表的操作
+
+刚才那些是对列表内部进行操作，但是有时后我们也需要对列表整体进行操作，譬如给一个元素全是整数的列表a进行排序
+
+* sorted()对列表进行临时排序
+
+  ```python
+  >>> a = ['blili', 'dlili', 'alili', 'clili']
+  >>> sorted(a)
+  ['alili', 'blili', 'clili', 'dlili']
+  >>> # sorted()对于字符串类型的元素是按照首字母进行排序
+  >>> # 也可以添加reverse=True或者Fale来进行升序还是降序
+  >>> sorted(a, reverse=True) 
+  ['dlili', 'clili', 'blili', 'alili']
+  >>> # 输出是按照我们的要求进行排序输出，但是再次输入a时会发现啥
+  ```
+
+* 倒着打印列表
+
+  ```python
+  >>> a.reverse()
+  >>> # 此时再输出a 再和刚开始输入的a比价，发现了啥
+  ```
+
+* 确定列表长度
+
+  ```python
+  >>> len(a)
+  4
+  
+  ```
+
+  
 
 
-####  
+
+##### 索引
+
+为什么索引是从0开始，而不是从1开始，大多数的编程语言也都是从0开始，而不是从1开始，其涉及了很多的内容
+
+- 在计算资源缺乏的过去，0标号的写法可以节省编译时间
+- 现代语言中0标号可以更优雅的表示数组字串
+- 在支持指针的语言中，标号被视作是偏移量，因此从0开始更符合逻辑
+
+在Python中，从0开始的半开放的写法格外的便捷，例如`a[:n]`表示了`a`的前n个元素，这样就很一目了然。
+
+
+
+半开放的意思就是左闭右开
+
+```python
+>>> a = [10, 2, 3, 5, 6]
+>>> a[:3]
+[10, 2, 3]
+>>> a[1:4]
+[2, 3, 5]
+>>> a[1:]
+[2, 3, 5, 6]
+```
+
+> Using 0-based indexing, half-open intervals, and suitable defaults (as Python ended up having), they are beautiful: `a[:n]` and `a[i:i+n]`; the former is long for `a[0:n]`. Using 1-based indexing, if you want `a[:n]` to mean the first n elements, you either have to use closed intervals or you can use a slice notation that uses start and length as the slice parameters. Using half-open intervals just isn’t very elegant when combined with 1-based indexing. Using closed intervals, you’d have to write `a[i:i+n-1]` for the n items starting at i. So perhaps using the slice length would be more elegant with 1-based indexing? Then you could write `a[i:n]`. And this is in fact what ABC did – it used a different notation so you could write `a@i|n`.(See http://homepages.cwi.nl/~steven/abc/qr.html#EXPRESSIONS.)
+
+**思考**: 既然可以按照正整数的索引位置获取对应元素，那么最后一个元素如何获取？还有其他的方法吗？
+
+#### 小作业：
+
+* 创建一个名为names的列表，将一些人的姓名放入其中，并且依次访问他们
+
+* 能使用问候语向names中的每一个人进行问候吗，譬如：glad to see you, my dear frined XXX
+
+* 创建一个晚会的需要邀请人的名单列表，列表中至少包含三个人名
+
+  * 有一个人无法参加晚会，使用print()指出是哪一位
+
+  * 将那位无法参加的剔除除列表，之后再添加以为到那个未能参加的人的位置
+
+  * 再多邀请一些人
+
+    * 使用insert()将新邀请的人加入邀请名单开头
+    * 使用insert()将新邀请的人加入邀请名单中间 
+
+  * 最后对最终的邀请名单打印
+
+    * 因各种问题，晚会无法举行，使用pop()依次删除名单中的人(最后只保留一个元素)，每次弹出都打印出sorry xxx, the party can't be held
+    * 最后一个使用del删除
+
+    
+
+    
 
 ### Reference
 
 * Python学习笔记(上卷)
 * 菜鸟教程
 * Python编程从入门到实践
+* [为什么数组标号是从0开始的](https://cenalulu.github.io/linux/why-array-start-from-zero/)
 
