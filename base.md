@@ -92,8 +92,8 @@ print(balabala)
 
 其中在六个标准数据类型中
 
-* **可变数据** : Number、String、Tuple
-* **不可变数据** : List、Dictionary、Set
+* **不可变数据** : Number、String、Tuple
+* **可变数据** : List、Dictionary、Set
 
 #### Number
 
@@ -406,7 +406,7 @@ print(blessing)
   ```python
   >>> # insert(arg1, arg2)
   >>> # arg1: 插入位置 arg2: 插入元素
-  >>> snack.inser(0, 'noodles')
+  >>> snack.insert(0, 'noodles')
   >>> print(snack)
   ['noodles' ,'ice cream', 'milk', 'biscuits']
   
@@ -518,28 +518,94 @@ print(blessing)
 #### 小作业：
 
 * 创建一个名为names的列表，将一些人的姓名放入其中，并且依次访问他们
-
 * 能使用问候语向names中的每一个人进行问候吗，譬如：glad to see you, my dear frined XXX
-
 * 创建一个晚会的需要邀请人的名单列表，列表中至少包含三个人名
-
   * 有一个人无法参加晚会，使用print()指出是哪一位
-
   * 将那位无法参加的剔除除列表，之后再添加以为到那个未能参加的人的位置
-
   * 再多邀请一些人
-
     * 使用insert()将新邀请的人加入邀请名单开头
     * 使用insert()将新邀请的人加入邀请名单中间 
-
   * 最后对最终的邀请名单打印
-
     * 因各种问题，晚会无法举行，使用pop()依次删除名单中的人(最后只保留一个元素)，每次弹出都打印出sorry xxx, the party can't be held
     * 最后一个使用del删除
 
-    
+#### 字典
 
-    
+字典相比与列表能够`更加明了的存储数据，其主要的思想就是`键值对`
+
+以下就是一个简单的字典：
+
+```python
+>>> laipi  = {'name': 'dabala', 'height': 200, 'weight': 80}
+
+```
+
+上述就是一个字典的定义，其基础格式如下，在Python中使用`{}`便可以定义一个字典，当然还有其他的方式定义一个字典，目前不需要，只需要知道字典是`键值对`为基础即可
+
+```python
+>>> a = {'key1': value1, 'key2': value2, ...}
+```
+
+##### 字典的操作
+
+* 访问字典中的值
+
+  获取字典中与键相关的值，可依次指定字典和放在`[]`中的键，如我想获取`laipi`的名字
+
+  ```python
+  >>> print(laipi['name'])
+  'dabala'
+  ```
+
+  获取身高和体重是一个道理
+
+* 添加键值对
+
+  字典是一种动态结构,可随时在其中添加键 — 值对。要添加键 — 值对,可依次指定字典名、用方括号括起的键和相关联的值。
+
+  譬如在`laipi`中添加`hair_color`
+
+  ```python
+  >>> laipi['hair_color'] = 'black'
+  >>> print(laipi)
+  {'name': 'dabala', 'height': 200, 'weight': 80, 'hair_color': 'black'}
+  ```
+
+* 创建空字典
+
+  ```python
+  >>> kk = {}
+  >>> kk['name'] = 'wkk'
+  >>> kk['height'] = 250
+  >>> print(kk)
+  {'name': 'wkk', 'height': 250}
+  ```
+
+* 修改字典中的值
+
+  ```python
+  >>> kk['height'] = 180
+  >>> print(kk)
+  {'name': 'wkk', 'height': 180}
+  ```
+
+* 删除键值对
+
+  ```python
+  >>> del kk['height']
+  >>> print(kk)
+  {'name': 'wkk'}
+  ```
+
+  
+
+### 循环
+
+详见Python编程从入门到实践第4、 5、 7章
+
+
+
+
 
 ### Reference
 
